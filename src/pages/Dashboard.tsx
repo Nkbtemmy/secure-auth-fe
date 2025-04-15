@@ -6,8 +6,8 @@ import { getUserData, logout } from '../utils/auth';
 interface DashboardData {
   stats: {
     totalVisits: number;
-    activeProjects: number;
-    notifications: number;
+    systemUsers: number;
+    systemRoles: number;
     tasks: number;
   };
   recentActivity: Array<{
@@ -96,12 +96,12 @@ const Dashboard: React.FC = () => {
                 <p className="mt-2 text-3xl font-bold text-gray-900">{dashboardData.stats.totalVisits}</p>
               </div>
               <div className="bg-white shadow rounded-lg p-6">
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Active Projects</h3>
-                <p className="mt-2 text-3xl font-bold text-gray-900">{dashboardData.stats.activeProjects}</p>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">System Users</h3>
+                <p className="mt-2 text-3xl font-bold text-gray-900">{dashboardData.stats.systemUsers}</p>
               </div>
               <div className="bg-white shadow rounded-lg p-6">
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Notifications</h3>
-                <p className="mt-2 text-3xl font-bold text-gray-900">{dashboardData.stats.notifications}</p>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">System Roles</h3>
+                <p className="mt-2 text-3xl font-bold text-gray-900">{dashboardData.stats.systemRoles}</p>
               </div>
               <div className="bg-white shadow rounded-lg p-6">
                 <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Tasks</h3>

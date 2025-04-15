@@ -48,16 +48,25 @@ export const registerUser = async (name: string, email: string, password: string
 
 // User API calls
 export const getUserProfile = async () => {
-  return api.get('/user/profile');
+  const token = getToken();
+  return api.get('/users/me', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export const updateUserProfile = async (userData: unknown) => {
-  return api.put('/user/profile', userData);
+  const token = getToken();
+  return api.put('/users/me', userData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 // Dashboard API calls
 export const getDashboardData = async () => {
-  return api.get('/dashboard');
+  const token = getToken();
+  return api.get('/dashboard', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export default api;

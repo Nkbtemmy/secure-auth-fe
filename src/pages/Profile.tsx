@@ -27,6 +27,7 @@ const Profile: React.FC = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await getUserProfile();
+        response.data.role = response.data.role.name;
         setProfile(response.data);
         setFormData({
           name: response.data.name,
