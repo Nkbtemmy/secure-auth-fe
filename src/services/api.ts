@@ -1,0 +1,63 @@
+import axios from 'axios';
+import { getToken, logout } from '../utils/auth';
+
+// Create an axios instance with default config
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'https://api.secure.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add request interceptor to attach auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor to handle errors
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Unauthorized - logout user
+      logout();
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Auth API calls
+export const loginUser = async (email: string, password: string) => {
+  return api.post('/auth/login', { email, password });
+};
+
+export const registerUser = async (name: string, email: string, password: string) => {
+  return api.post('/auth/register', { name, email, password });
+};
+
+// User API calls
+export const getUserProfile = async () => {
+  return api.get('/user/profile');
+};
+
+export const updateUserProfile = async (userData: unknown) => {
+  return api.put('/user/profile', userData);
+};
+
+// Dashboard API calls
+export const getDashboardData = async () => {
+  return api.get('/dashboard');
+};
+
+export default api;
