@@ -1,0 +1,19 @@
+services:
+  secure-user-fe:
+    image: secure-user
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: secure-user-fe
+    env_file:
+      - .env.local
+    environment:
+      VITE_API_URL: https://api.eparking.urutare.com/api/v1
+    ports:
+      - "5679:5173"
+    networks:
+      - secure-auth-inc-network
+
+networks:
+  secure-auth-inc-network:
+    driver: bridge

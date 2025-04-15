@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserProfile, updateUserProfile } from '../services/api';
-import { getUserData, setUserData, logout } from '../utils/auth';
+import { setUserData, logout } from '../utils/auth';
 
 interface UserProfile {
   id: string;

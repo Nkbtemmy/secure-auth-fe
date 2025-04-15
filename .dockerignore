@@ -1,0 +1,40 @@
+# Ignore node_modules, as we install dependencies inside the Docker container
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore environment variables and local configuration files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore logs and temporary files
+logs
+*.log
+logs/*
+*.pid
+
+# Ignore Docker configuration files
+Dockerfile
+docker-compose*.yml
+
+# Ignore Vite build output
+dist/
+
+# Ignore editor and system files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# Ignore test and coverage files
+coverage/
+*.test.*
+*.spec.*
+
+# Ignore local development output files
+tmp/

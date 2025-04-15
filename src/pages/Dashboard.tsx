@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
-  const userData = getUserData();
+  const userData = getUserData() as { name?: string };
 
   useEffect(() => {
     const fetchDashboardData = async () => {
