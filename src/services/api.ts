@@ -69,4 +69,46 @@ export const getDashboardData = async () => {
   });
 };
 
+export const getUsers = async () => {
+  const token = getToken();
+  return api.get('/users', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const apiAddUser = async (userData: unknown) => {
+  const token = getToken();
+  return api.post('/users', userData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const apiUpdateUser = async (userId: number, userData: unknown) => {
+  const token = getToken();
+  return api.put(`/users/${userId}`, userData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const updateUserRole = async (userId: number, role: string) => {
+  const token = getToken();
+  return api.put(`/users/${userId}/role`, { role }, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const apiDeleteUser = async (userId: number) => {
+  const token = getToken();
+  return api.delete(`/users/${userId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const getRoles = async () => {
+  const token = getToken();
+  return api.get('/roles', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
 export default api;
